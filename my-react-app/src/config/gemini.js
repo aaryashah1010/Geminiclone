@@ -3,11 +3,13 @@ import {
     HarmCategory,
     HarmBlockThreshold,
 } from "@google/generative-ai";
+const apiKey = import.meta.env.VITE_GENERATIVE_API_KEY;
+if (!apiKey) {
+  console.error("API key is missing! Please set VITE_GENERATIVE_API_KEY in your .env file at the project root.");
+}
 
 // No need for fs, using Blob instead
 import mime from "mime-types";
-
-const apiKey = "AIzaSyAuderXOUpfn0a3J41bTGaQvjLKXdaGZEg";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
